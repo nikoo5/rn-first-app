@@ -5,20 +5,25 @@ const GoalModal = (props) => {
     return (
       <Modal visible={props.visible} animationType="fade" transparent={true}>
         <View style={styles.modal}>
-          <View style={styles.modalContainer}>
+          <View style={styles.modalText}>
             <View>
               <Text>Are you sure you want to remove this Goal?</Text>
             </View>
-            <View style={styles.modalBox}>
-              <View style={styles.modalBoxContainer}>
-                <Button
-                  title="Cancel"
-                  onPress={props.onCancel.bind(this, false)}
-                />
-                <Button
-                  title="Remove"
-                  onPress={props.onRemove.bind(this, props.id)}
-                />
+            <View style={styles.modalButtons}>
+              <View style={styles.buttonsContainer}>
+                <View style={styles.button}>
+                  <Button
+                    title="Cancel"
+                    onPress={props.onCancel.bind(this, false)}
+                  />
+                </View>
+                <View style={styles.button}>
+                  <Button
+                    title="Remove"
+                    onPress={props.onRemove.bind(this, props.id)}
+                    color="red"
+                  />
+                </View>
               </View>
             </View>
           </View>
@@ -34,8 +39,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#000000CC",
   },
-  modalContainer: {
-    width: "80%",
+  modalText: {
+    maxWidth: "80%",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
@@ -43,15 +48,18 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: "#cccccc",
   },
-  modalBox: {
+  modalButtons: {
     marginTop: 15,
     flexDirection: "row",
   },
-  modalBoxContainer: {
+  buttonsContainer: {
     flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",
   },
+  button: {
+      width: "30%"
+  }
 });
 
 export default GoalModal;

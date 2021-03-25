@@ -5,17 +5,18 @@ import GoalInput from './assets/components/GoalInput';
 import GoalItem from './assets/components/GoalItem';
 import GoalModal from './assets/components/GoalModal';
 
+{
+  [...new Set(images.map((item) => item.tag))]
+    .sort((a, b) => a.localeCompare(b))
+    .map((item) => <Dropdown.Item eventKey={item}>{item}</Dropdown.Item>);
+}
+
+
 export default function App() {  
   const [modalVisible, setModalVisible] = useState(false);
   const [removeGoalId, setRemoveGoalId] = useState(0);
 
-  const [goalsList, setGoalsList] = useState([
-    { id: Math.random().toString(), description: "Goal Nº 1", date: "01/01/1900" },
-    { id: Math.random().toString(), description: "Goal Nº 2", date: "01/01/1900" },
-    { id: Math.random().toString(), description: "Goal Nº 3", date: "01/01/1900" },
-    { id: Math.random().toString(), description: "Goal Nº 4", date: "01/01/1900" },
-    { id: Math.random().toString(), description: "Goal Nº 5", date: "01/01/1900" },
-  ]);
+  const [goalsList, setGoalsList] = useState([]);
 
   const addGoalHandler = (inputGoal) => {
     if(inputGoal != "") {
@@ -53,12 +54,12 @@ export default function App() {
         onCancel={() => {
           setModalVisible(false);
         }}
-        onRemove={(removeGoalHandler)}
+        onRemove={removeGoalHandler}
       />
 
       <View style={styles.screen}>
         <StatusBar />
-        <GoalInput onAddGoal={addGoalHandler} />
+        <GoalInput onAddGoal={addGoalHandler} />        
         <FlatList
           style={styles.listContainer}
           keyExtractor={(item, index) => item.id}
