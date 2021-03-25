@@ -14,7 +14,6 @@ const GoalInput = (props) => {
         />
         <Button
           title="ADD GOAL"
-          style={styles.button}
           onPress={() => {
             props.onAddGoal(inputGoal);
             setInputGoal("");
@@ -36,10 +35,6 @@ const styles = StyleSheet.create({
     borderColor: "#555555",
     borderBottomWidth: 2,
     padding: 10,
-  },
-  button: {
-    justifyContent: "center",
-    alignItems: "center",
   }
 });
 
